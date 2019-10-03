@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Building
 {
@@ -10,6 +6,16 @@ namespace Building
     {
         static void Main(string[] args)
         {
+            //init menu
+            // var menu = new Menu(root item);
+            // menu.Add(new MenuItem(text, action?), where to add);
+
+            //то к чему идем
+            while (true)
+            {
+                Console.Write(menu);
+                menu.DoSmth(Console.ReadKey());
+            }
         }
     }
 }
