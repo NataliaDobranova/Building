@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Building.Menu;
 
 namespace Building
@@ -7,6 +8,7 @@ namespace Building
     {
         private static void Main(string[] args)
         {
+            var menuFileName = ConfigurationManager.AppSettings["MenuFile"];
             var mainMenu = new MenuItem("Main Menu");
 
             var rabotniki = new MenuItem("Работники");
@@ -21,6 +23,9 @@ namespace Building
             );
 
             var menu = new Menu.Menu(mainMenu);
+
+            //надо меню сохранить в файл
+            //потом прочитать из файла
 
             menu.OnExit += Exit;
 

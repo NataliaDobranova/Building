@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Building.Menu
 {
+    [Serializable]
     public class MenuItem
     {
         public string Text { get; set; }
         public int Index { get; set; }
         public List<MenuItem> Items { get; set; }
 
-        public MenuItem Parent { get; set; }
+        [NonSerialized]
+        [XmlIgnore]
+        public MenuItem Parent;
+
+        public MenuItem()
+        { }
 
         public MenuItem(string text)
         {

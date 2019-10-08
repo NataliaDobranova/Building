@@ -2,13 +2,20 @@
 
 namespace Building.Menu
 {
+    [Serializable]
     public class Menu
     {
         public event EventHandler OnExit;
 
         private const int ExitCode = 0;
         public MenuItem Root { get; set; }
+
         public MenuItem Current { get; set; }
+
+        public Menu()
+        {
+
+        }
 
         public Menu(MenuItem root)
         {
