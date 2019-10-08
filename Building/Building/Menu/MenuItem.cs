@@ -14,23 +14,23 @@ namespace Building.Menu
 
         public MenuItem(string text)
         {
-            Items = new List<MenuItem>();
             Text = text;
+            Items = new List<MenuItem>();
         }
 
         public void Add(params MenuItem[] items)
         {
             foreach (var item in items)
             {
-                item.Parent = this;
                 item.Index = Items.Count + 1;
+                item.Parent = this;
                 Items.Add(item);
             }
         }
 
         public MenuItem GoForward(int index)
         {
-            return Items?[index - 1] ?? throw new ArgumentOutOfRangeException("Menu item is not exist");
+            return Items[index - 1];
         }
 
         public MenuItem GoBack()
@@ -48,7 +48,8 @@ namespace Building.Menu
                 sb.AppendLine(item.Index + ". " + item.Text);
             }
 
-            sb.AppendLine(Parent == null ? "0.Exit" : "0.Back");
+            sb.AppendLine(Parent == null ?
+                "0.Exit" : "0.Back");
             return sb.ToString();
         }
     }

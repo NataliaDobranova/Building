@@ -16,35 +16,28 @@ namespace Building.Menu
             Current = root;
         }
 
-        public override string ToString()
+        public void ChangeState(string key)
         {
-            return Current.ToString();
-        }
-
-        public void ChangeState(object sender, EventArgs e)
-        {
-            var key = (char)sender;
-
-            if (int.TryParse(key.ToString(), out int keyCode))
+            if (int.TryParse(key, out int keyValue))
             {
-                switch (keyCode)
+                switch (keyValue)
                 {
                     case ExitCode:
                         {
                             if (Current == Root)
                             {
                                 Exit();
-                                break;
                             }
                             else
                             {
                                 Current = Current.GoBack();
-                                break;
                             }
+
+                            break;
                         }
                     default:
                         {
-                            Current = Current.GoForward(keyCode);
+                            Current = Current.GoForward(keyValue);
                             break;
                         }
                 }
@@ -55,5 +48,11 @@ namespace Building.Menu
         {
             OnExit?.Invoke(this, new EventArgs());
         }
+
+        public override string ToString()
+        {
+            return Current.ToString();
+        }
+
     }
 }
