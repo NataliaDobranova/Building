@@ -5,7 +5,8 @@ namespace Building.XmlHelper
 {
     public static class XmlHelper
     {
-        public static void Serialize<T>(T obj, string fileName) where T : class
+        public static void Serialize<T>(T obj, string fileName) 
+            where T : class
         {
             var serializer = new XmlSerializer(typeof(T));
 

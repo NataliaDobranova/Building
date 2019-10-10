@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Building.Menu
 {
@@ -23,6 +24,24 @@ namespace Building.Menu
             Current = root;
         }
 
+        public void Init()
+        {
+            Init(Root.Items, Root);
+            Init(Current.Items, Current);
+        }
+
+        private void Init
+            (List<MenuItem> items, MenuItem parent)
+        {
+            foreach (var item in items)
+            {
+                item.Parent = parent;
+
+                if (item.Items.Count != 0)
+                    Init(item.Items, item);
+            }
+        }
+
         public void ChangeState(string key)
         {
             if (int.TryParse(key, out int keyValue))
@@ -31,7 +50,7 @@ namespace Building.Menu
                 {
                     case ExitCode:
                         {
-                            if (Current == Root)
+                            if (Current.Id == Root.Id)
                             {
                                 Exit();
                             }

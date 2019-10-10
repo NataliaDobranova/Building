@@ -11,8 +11,8 @@ namespace Building.Menu
         public string Text { get; set; }
         public int Index { get; set; }
         public List<MenuItem> Items { get; set; }
+        public Guid Id { get; set; }
 
-        [NonSerialized]
         [XmlIgnore]
         public MenuItem Parent;
 
@@ -21,6 +21,7 @@ namespace Building.Menu
 
         public MenuItem(string text)
         {
+            Id = Guid.NewGuid();
             Text = text;
             Items = new List<MenuItem>();
         }
