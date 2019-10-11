@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using Building.Menu;
 using static Building.XmlHelper.XmlHelper;
 
 namespace Building
@@ -9,8 +8,10 @@ namespace Building
     {
         private static void Main(string[] args)
         {
-            var menuFileName =
-                ConfigurationManager.AppSettings["MenuFile"];
+            //find a file path in app.config
+            var menuFileName = ConfigurationManager.AppSettings["MenuFile"];
+
+            #region old
             //var mainMenu = new MenuItem("Main Menu");
 
             //var rabotniki = new MenuItem("Работники");
@@ -27,10 +28,16 @@ namespace Building
             //var menu = new Menu.Menu(mainMenu);
 
             //Serialize(menu, menuFileName);
+            #endregion
+
+            //read menu from file
             var menu1 = Deserialize<Menu.Menu>(menuFileName);
+            //explicitly initialize parent items to make Back/Exit works
             menu1.Init();
+            //init OnExit event handler
             menu1.OnExit += Exit;
 
+            //application lifecycle
             while (true)
             {
                 Console.Clear();
@@ -40,11 +47,20 @@ namespace Building
             }
         }
 
+        /// <summary>
+        /// Waits until user pushes enter key
+        /// </summary>
+        /// <returns>Input string</returns>
         private static string WaitForUserInput()
         {
             return Console.ReadLine();
         }
 
+        /// <summary>
+        /// OnExit event handler
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="args">Additional arguments</param>
         private static void Exit(object sender, EventArgs args)
         {
             Environment.Exit(0);
