@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Db;
+using System;
 using System.Configuration;
-using Building.Menu;
+using System.Linq;
 using static Building.XmlHelper.XmlHelper;
 
 namespace Building
@@ -11,6 +12,53 @@ namespace Building
         {
             var menuFileName =
                 ConfigurationManager.AppSettings["MenuFile"];
+            var connectionString =
+                ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            using (var context
+                = new BuildingContext(connectionString))
+            {
+                var adminUsers =
+                    context.Users
+                    .Where(user => user.Name == "Admin");
+
+                foreach (var admin in adminUsers)
+                {
+                    Console.Write(admin.Id);
+                }
+
+                context.Users.Add(new Db.Model.User() { Name = "Vasya" });
+                
+                context.SaveChanges();
+            }
+
+            //using (var connection
+            //    = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    var param = "Vasya";
+            //    string query = 
+            //        $"SELECT * FROM dbo.Users " +
+            //        $"WHERE Name = @name";
+            //    SqlCommand command =
+            //        new SqlCommand(query, connection);
+            //    command.Parameters
+            //        .Add(new SqlParameter("@name", param));
+            //    var reader = command.ExecuteReader();
+            //    Dictionary<int, string> users 
+            //        = new Dictionary<int, string>();
+            //    while (reader.Read())
+            //    {
+            //        var id = (int)reader["Id"];
+            //        var name = (string)reader["Name"];
+            //        users.Add(id, name);
+            //    }
+            //    foreach (var user in users)
+            //    {
+            //       Console.Write(user.Key + " " + user.Value);
+            //    }
+            //}
+
             //var mainMenu = new MenuItem("Main Menu");
 
             //var rabotniki = new MenuItem("Работники");

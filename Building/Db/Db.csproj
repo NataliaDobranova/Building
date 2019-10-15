@@ -5,18 +5,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E87E9692-7865-41B3-93EA-9A4AAA6C47BA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Building</RootNamespace>
-    <AssemblyName>Building</AssemblyName>
+    <ProjectGuid>{C5DAFE23-CDFB-42E6-9EF9-E1FABCB396B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db</RootNamespace>
+    <AssemblyName>Db</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,7 +25,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,7 +41,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,25 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\Menu.cs" />
-    <Compile Include="Menu\MenuItem.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BuildingContext.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlHelper\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Db\Db.csproj">
-      <Project>{C5DAFE23-CDFB-42E6-9EF9-E1FABCB396B7}</Project>
-      <Name>Db</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
