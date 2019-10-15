@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using Db.Model;
 using static Building.XmlHelper.XmlHelper;
+using System.Text;
 
 namespace Building
 {
@@ -29,32 +30,45 @@ namespace Building
                 }
 
                 context.Users.Add(new User() { Name = "Vasya" });
-                
+
                 context.SaveChanges();
             }
 
             #region adonet example
+            ////create a connection based on connectionString
             //using (var connection
             //    = new SqlConnection(connectionString))
             //{
+            ////open connection
             //    connection.Open();
-            //    var param = "Vasya";
+            ////initialize query string (@name is a parameter)
             //    string query = 
             //        $"SELECT * FROM dbo.Users " +
             //        $"WHERE Name = @name";
+            ////initialize a variable to pass as a parameter value
+            //    var param = "Vasya";
+            ////initialize query as a SqlCommand object
             //    SqlCommand command =
             //        new SqlCommand(query, connection);
+            ////map @name to its value
             //    command.Parameters
             //        .Add(new SqlParameter("@name", param));
+            ////execute (with expeted output table)
             //    var reader = command.ExecuteReader();
+            ////init dictionary to store a result
             //    Dictionary<int, string> users 
             //        = new Dictionary<int, string>();
+            ////while is possible to read - read next row
             //    while (reader.Read())
             //    {
+            ////get row element named "Id", convert to int
             //        var id = (int)reader["Id"];
+            ////get row element named "Name", convert to string
             //        var name = (string)reader["Name"];
+            ////add row to result dictionary
             //        users.Add(id, name);
             //    }
+            ////view result
             //    foreach (var user in users)
             //    {
             //       Console.Write(user.Key + " " + user.Value);
@@ -116,6 +130,5 @@ namespace Building
         {
             Environment.Exit(0);
         }
-
     }
 }
