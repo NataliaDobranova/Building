@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Linq;
+using Db.Model;
 using static Building.XmlHelper.XmlHelper;
 
 namespace Building
@@ -27,11 +28,12 @@ namespace Building
                     Console.Write(admin.Id);
                 }
 
-                context.Users.Add(new Db.Model.User() { Name = "Vasya" });
+                context.Users.Add(new User() { Name = "Vasya" });
                 
                 context.SaveChanges();
             }
 
+            #region adonet example
             //using (var connection
             //    = new SqlConnection(connectionString))
             //{
@@ -58,7 +60,9 @@ namespace Building
             //       Console.Write(user.Key + " " + user.Value);
             //    }
             //}
+            #endregion
 
+            #region menuinit
             //var mainMenu = new MenuItem("Main Menu");
 
             //var rabotniki = new MenuItem("Работники");
