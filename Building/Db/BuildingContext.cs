@@ -12,7 +12,7 @@ namespace Db
 
         }
         public BuildingContext()
-            :base("Data Source=A104PCPREPOD\\A1PREPOD;Initial Catalog=Egor_N;Integrated Security=SSPI;")
+            :base("DefaultConnection")
         {
 
         }
